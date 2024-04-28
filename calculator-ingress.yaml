@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: HTTP
+  name: calc-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: calc.home
+    http:
+      paths:
+      - backend:
+          service:
+            name: calc-service
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
